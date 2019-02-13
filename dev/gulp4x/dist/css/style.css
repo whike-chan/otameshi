@@ -1,238 +1,5 @@
 @charset "UTF-8";
 
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  word-break: normal;
-  word-wrap: break-word;
-}
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video,
-input,
-button,
-textarea,
-select {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-}
-
-html {
-  height: 100%;
-  font-size: 62.5%;
-}
-
-body {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  -webkit-text-size-adjust: 100% !important;
-}
-
-header,
-footer,
-section,
-article {
-  display: block;
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
-blockquote,
-q {
-  quotes: none;
-}
-
-blockquote:before,
-blockquote:after {
-  content: '';
-  content: none;
-}
-
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-
-:focus {
-  outline: 0;
-}
-
-ins {
-  text-decoration: none;
-}
-
-del {
-  text-decoration: line-through;
-}
-
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
-.clearfix {
-  display: inline-block;
-  min-height: 1%;
-}
-
-.clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-
-* html .clearfix {
-  height: 1%;
-}
-
-input,
-button,
-textarea,
-select {
-  background: none;
-  border-radius: 0;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-select::-ms-expand {
-  display: none;
-}
-
-input[type="button"],
-input[type="submit"] {
-  -webkit-appearance: none;
-  border-radius: 0;
-}
-
-body {
-  color: #000;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
-  font-size: 16px;
-  font-size: 1.6rem;
-}
-
-p {
-  line-height: 1.75;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1.5;
-}
-
-small {
-  font-size: 80%;
-}
-
-a {
-  color: #000;
-  text-decoration: none;
-}
-
 .tac {
   text-align: center !important;
 }
@@ -589,6 +356,239 @@ a {
   padding-bottom: 100px !important;
 }
 
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  word-break: normal;
+  word-wrap: break-word;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-text-size-adjust: 100% !important;
+}
+
+header,
+footer,
+section,
+article {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after {
+  content: '';
+  content: none;
+}
+
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+:focus {
+  outline: 0;
+}
+
+ins {
+  text-decoration: none;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.clearfix {
+  display: inline-block;
+  min-height: 1%;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+input,
+button,
+textarea,
+select {
+  background: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input[type="button"],
+input[type="submit"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+body {
+  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+
+p {
+  line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.5;
+}
+
+small {
+  font-size: 80%;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
 .header {
   text-align: center;
   background-color: #ccc;
@@ -599,7 +599,13 @@ a {
   background-color: #b2b2b2;
 }
 
-.wrap-pictures-sample .wrap-bgimg {
+.page-top .area-mv {
+  width: 100%;
+  height: 300px;
+  background-color: black;
+}
+
+.page-top .wrap-pictures-sample .wrap-bgimg {
   width: 150px;
   height: 150px;
   background-size: 100%;
@@ -614,11 +620,6 @@ a {
 }
 
 @media screen and (max-width: 767.9px) {
-  body {
-    font-size: 14px;
-    font-size: 1.4rem;
-  }
-
   .mt0 {
     margin-top: 0px !important;
   }
@@ -955,6 +956,11 @@ a {
     padding-bottom: 50px !important;
   }
 
+  body {
+    font-size: 14px;
+    font-size: 1.4rem;
+  }
+
   .view-pc {
     display: none !important;
   }
@@ -967,7 +973,7 @@ a {
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .wrap-pictures-sample .wrap-bgimg {
+  .page-top .wrap-pictures-sample .wrap-bgimg {
     background-image: url("http://placehold.jp/300x300.png");
   }
 }

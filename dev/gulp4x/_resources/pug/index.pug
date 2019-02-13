@@ -1,6 +1,18 @@
+//----------------------------------------
+//- トップページ
+//----------------------------------------
 extend /_include/_layout
 
+append vars
+  - var key = "top"
+  - var page = pagelist[key]
+
 block main
+  //- mv
+  .area-mv
+  //- End mv
+
+
   .wrap-pictures-sample
     p 背景画像をRetina対応
       br

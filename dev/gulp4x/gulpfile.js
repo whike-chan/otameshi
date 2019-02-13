@@ -5,8 +5,7 @@ const gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 	lec = require('gulp-line-ending-corrector'),//文字コード,改行コード指定
 	notify  = require('gulp-notify'),
-	changed  = require('gulp-changed'),//変更監視部分指定
-	watch  = require('gulp-watch');//ファイル追加も監視できるようにする
+	changed  = require('gulp-changed');//変更監視部分指定
 
 //プラグイン - sass
 const sass = require('gulp-sass'),
