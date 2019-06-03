@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IntersectionObserver TEST</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 馬の写真  -->
+  <div class="fv-uma">
+    これはただの馬
+    <img src="uma.jpg" alt="uma">
+  </div>
+  <!-- End 馬の写真  -->
+  <!-- boxゾーン -->
+  <div class="box box-1">
+    TEST BOX1
+    <p class="message">ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!</p>
+  </div>
+  <div class="box box-2">
+    TEST BOX2
+    <p class="message">ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!</p>
+  </div>
+  <div class="box box-3">
+    TEST BOX3
+    <p class="message">ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!</p>
+  </div>
+  <!-- End boxゾーン -->
+  <!-- 鳥の写真  -->
+  <p class="tac">何回もアニメーションする鳥</p>
+  <div class="anime-img eternal-anime-img">
+    <img src="tori.jpg" alt="tori">
+  </div>
+  <!-- End 鳥の写真  -->
+  <!-- リスの写真  -->
+  <p class="tac">１回だけアニメーションするリスちゃん</p>
+  <div class="anime-img once-anime-img">
+    <img src="risu.jpg" alt="risu">
+  </div>
+  <!-- End リスの写真  -->
+  <!-- たくさんの画像 -->
+  <p class="tac">画像遅延読み込み</p>
+  <ul class="list-lazyload">
+    <li>
+      <img src="" data-src="picture-takusan/1.jpg" alt="1" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/2.jpg" alt="2" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/3.jpg" alt="3" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/4.jpg" alt="4" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/5.jpg" alt="5" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/6.jpg" alt="" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/7.jpg" alt="" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/8.jpg" alt="" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/9.jpg" alt="" class="lazy">
+    </li>
+    <li>
+      <img src="" data-src="picture-takusan/10.jpg" alt="" class="lazy">
+    </li>
+  </ul>
+  <!-- End たくさんの画像 -->
+  <p>
+    かわいい画像の数々<br>
+    <a href="http://placeimg.com/" target="_blank" rel="noopener">PlaceIMG | Easy FPO and Dummy Images for Any Project</a>
+  </p>
+  <p>参考サイト</p>
+  <ul>
+    <li>
+      <a href="https://firstlayout.net/animation-on-elements-entered-on-the-screen/" target="_blank" rel="noopener">ブラウザにやさしくスクロールで画面に入った要素にアニメーション</a>
+    </li>
+    <li>
+      <a href="https://qiita.com/yamanoku/items/027308e23cfc69845d7e" target="_blank" rel="noopener">Intersection Observer が良さそうなので試してみた - Qiita</a>
+    </li>
+    <li>
+      <a href="https://qiita.com/ryo_hisano/items/42f5980720bc832e6e09" target="_blank" rel="noopener">使ってみよう！Intersection Observer！ - Qiita</a>
+    </li>
+  </ul>
+<script src="script.js"></script>
+</body>
+</html>
