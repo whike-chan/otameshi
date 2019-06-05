@@ -1,0 +1,15 @@
+@charset "UTF-8";
+// =================================================
+//	汎用パーツ
+// =================================================
+//	デバイスdisplay
+@include mq_sp {
+	.view-pc {
+		display: none !important;
+	}
+}
+@include mq_pc {
+	.view-sp {
+		display: none !important;
+	}
+}

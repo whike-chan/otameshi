@@ -1,0 +1,146 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+.tac {
+  text-align: center;
+}
+/* ファーストビュー馬 */
+.fv-uma {
+  width: 700px;
+  height: 450px;
+  margin: 50px auto;
+}
+.fv-uma img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+/* ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!BOXたち */
+.box {
+  width: 300px;
+  height: 100px;
+  padding: 1em 0;
+  margin: 50px auto;
+  text-align: center;
+  border: 1px solid black;
+  box-shadow: none;
+  transition: all 1s;
+  box-sizing: border-box;
+}
+.box .message {
+  opacity: 0;
+  transition: all 1s;
+}
+/* 視界に入ったボックス */
+.box.looking {
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px 3px #ffb4bb;
+}
+.box.box-2.looking {
+  box-shadow: 0px 0px 6px 3px #ffd93d;
+}
+.box.box-3.looking {
+  box-shadow: 0px 0px 6px 3px #3dd7ff;
+}
+.box.looking .message {
+  opacity: 1;
+}
+/* 鳥とリスの画像 */
+.anime-img {
+  width: 600px;
+  height: 375px;
+  margin: auto;
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+}
+.anime-img img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+.anime-img::before,
+.anime-img::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+}
+.eternal-anime-img::before,
+.eternal-anime-img::after {
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+.eternal-anime-img::before {
+  left: 0;
+}
+.eternal-anime-img::after {
+  right: 0;
+}
+.eternal-anime-img.looking::before {
+  animation: animeEternalLeft 2s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+@keyframes animeEternalLeft {
+  100% {
+    transform: translateY(100%);
+  }
+}
+.eternal-anime-img.looking::after {
+  animation: animeEternalRight 2s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+@keyframes animeEternalRight {
+  100% {
+    transform: translateY(-100%);
+  }
+}
+.once-anime-img::before,
+.once-anime-img::after {
+  width: 100%;
+  height: 50%;
+}
+.once-anime-img::before {
+  top: 0;
+  left: 0;
+}
+.once-anime-img::after {
+  bottom: 0;
+  right: 0;
+}
+.once-anime-img.arrived::before {
+  animation: animeOnceTop 2s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+@keyframes animeOnceTop {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.once-anime-img.arrived::after {
+  animation: animeOnceBottom 2s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+@keyframes animeOnceBottom {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/* たくさん画像 */
+.list-lazyload {
+  width: 1000px;
+  margin: auto;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.list-lazyload li {
+  width: 490px;
+  margin-bottom: 20px;
+}
+.lazy {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}

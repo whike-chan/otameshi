@@ -1,0 +1,22 @@
+//----------------------------------------
+//- トップページ
+//----------------------------------------
+extend /_include/_layout
+
+append vars
+  - var key = "top"
+  - var page = pagelist[key]
+
+block main
+  //- mv
+  .area-mv
+  //- End mv
+
+
+  .wrap-pictures-sample
+    p 背景画像をRetina対応
+      br
+      |普通・・・150x150
+      br
+      |Retina・・・300x300
+    .wrap-bgimg

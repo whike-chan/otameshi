@@ -1,0 +1,38 @@
+@charset "UTF-8";
+// ===================================================================
+// variables
+// ===================================================================
+// base font
+$font_family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+//明朝体記述例
+//font-family: Georgia, Times, "Times New Roman", "游明朝体", YuMincho, "游明朝", "Yu Mincho", serif;
+
+// base font size
+$font_size: 62.5%;
+// base width
+$base_width: 1060px;
+// function img_url
+// $images_path: "/img/";
+// function calc_percent
+$calc: $base_width;
+
+// =================================================
+//	_layout.scssの設定 (true:出力される false:出力されない)
+// =================================================
+// 余白調整用
+$use_spacing_classes: true;
+
+// font-size用
+$use_fs: false;
+
+// text-align用
+$use_ta: true;
+
+// font-weight用
+$use_fw: true;
+
+// width px用
+$use_w: false;
+
+// width %用
+$use_wp: false;

@@ -1,0 +1,22 @@
+//----------------------------------------
+//- _layout ページ構成
+//----------------------------------------
+block vars
+	include /_include/_vars/_pages
+
+doctype html
+//-ogpを設定しないときはprefix要りません
+html(lang='ja' prefix='og: http://ogp.me/ns#')
+	include /_include/_module/_head
+
+	block layout
+		body
+			.box-frame-page
+			div(class="page-" + key)
+				block header
+					include /_include/_module/_header
+
+				block main
+
+				block footer
+					include /_include/_module/_footer
