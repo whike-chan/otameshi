@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scrollTo test</title>
+  <style>
+    body { margin-top: 0; padding-top: 2.5em; }
+    p { margin-top: 0; padding-top: 1em; }
+    nav { width: 200px; position: fixed; margin: auto; top: 4em; left: 0; right: 0; }
+    nav a { color: #fff; }
+    .fixed { position: fixed; top: 0; left: 0; width: 100%; padding: .5em; background-color: #fff; }
+    .logo { display: block; position: fixed; top: 1em; right: 1em; color: #fff; background-color: #14576C; padding: 1em; border-radius:  50%; }
+    .contents { color: #fff; background-color: #4FAA9C; padding: 1em 1em 50em; }
+    .contents:nth-of-type(2) { background-color: #AED679; }
+    .contents:nth-of-type(3) { background-color: #FCB324; }
+    .contents:nth-of-type(4) { background-color: #E78223; }
+  </style>
+</head>
+<body>
+  <div id="top">
+    <p id="js_fixed" class="fixed">scrollToを使ってスムーズスクロール</p>
+    <a href="#top" class="js-scroll logo">ロゴォ</a>
+    <nav class="nav">
+      <ul>
+        <li>
+          <a href="#contents1" class="js-scroll">１つめへとぶ～</a>
+        </li>
+        <li>
+          <a href="#contents2" class="js-scroll">２つめへとぶ～</a>
+        </li>
+        <li>
+          <a href="#contents3" class="js-scroll">３つめへとぶ～</a>
+        </li>
+        <li>
+          <a href="#contents4" class="js-scroll">４つめへとぶ～</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <div id="contents1" class="contents">コンテンツその１</div>
+      <div id="contents2" class="contents">コンテンツその２</div>
+      <div id="contents3" class="contents">コンテンツその３</div>
+      <div id="contents4" class="contents">コンテンツその４</div>
+    </main>
+    <dl>
+      <dt>メモ</dt>
+      <dd>
+        <ul>
+          <li>scrollToのoptionがIE効かない。</li>
+          <li>headerがfixedとかあるあるだしこれ使いたいけど、やっぱデフォルトでIEをsmoothさせるのは難しいのか。</li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>参考</dt>
+      <dd>
+        <ul>
+          <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Window/scroll" target="_blank">window.scroll - Web API | MDN</a></li>
+          <li><a href="https://www.to-r.net/media/smooth_scrolling_2019/" target="_blank">今どきのスムーズスクロール(2019年版) - to-R Media</a></li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</body>
+<script>
+  // js-scrollクラスを持つものがクリックされたら
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    if(!target.classList.contains('js-scroll')) return;
+    e.preventDefault();
+    var targetId = target.hash;
+    var targetElm = document.querySelector(targetId);
+    var rectTop = targetElm.getBoundingClientRect().top;
+    var offsetTop = window.pageYOffset;
+    var buffer = document.getElementById('js_fixed').clientHeight;
+    var top = rectTop + offsetTop - buffer;
+    // 飛び先の位置 + 現在の位置 - 調整（今回は固定ヘッダー分）まで移動
+    window.scrollTo({
+      top,
+      behavior: 'smooth'
+    });
+  });
+</script>
+</html>
