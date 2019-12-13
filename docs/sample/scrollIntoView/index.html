@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scrollIntoView test</title>
+  <style>
+    body { margin-top: 0; }
+    p { margin-top: 0; padding-top: 1em; }
+    nav { width: 200px; position: fixed; margin: auto; top: 4em; left: 0; right: 0; }
+    nav a { color: #fff; }
+    .logo { display: block; position: fixed; top: 1em; right: 1em; color: #fff; background-color: #14576C; padding: 1em; border-radius:  50%; }
+    .contents { color: #fff; background-color: #4FAA9C; padding: 1em 1em 50em; }
+    .contents:nth-of-type(2) { background-color: #AED679; }
+    .contents:nth-of-type(3) { background-color: #FCB324; }
+    .contents:nth-of-type(4) { background-color: #E78223; }
+  </style>
+</head>
+<body>
+  <div id="top">
+    <p>scrollIntoViewを使ってスムーズスクロール</p>
+    <a href="#top" class="js-scroll logo">ロゴォ</a>
+    <nav class="nav">
+      <ul>
+        <li>
+          <a href="#contents1" class="js-scroll">１つめへとぶ～</a>
+        </li>
+        <li>
+          <a href="#contents2" class="js-scroll">２つめへとぶ～</a>
+        </li>
+        <li>
+          <a href="#contents3" class="js-scroll">３つめへとぶ～</a>
+        </li>
+        <li>
+          <a href="#contents4" class="js-scroll">４つめへとぶ～</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <div id="contents1" class="contents">コンテンツその１</div>
+      <div id="contents2" class="contents">コンテンツその２</div>
+      <div id="contents3" class="contents">コンテンツその３</div>
+      <div id="contents4" class="contents">コンテンツその４</div>
+    </main>
+    <dl>
+      <dt>メモ</dt>
+      <dd>
+        <ul>
+          <li>IEはpolyfillを入れたら動いたが、bodyにidを振ったとき動かなかった。その要素が見えるようにスクロールするという動きだから、bodyに入れるのはそもそも良くない感じがするので、なにがしかでwrapしよう。</li>
+          <li>スピード調整ができないけど、手軽でよい。</li>
+          <li>chrome, firefox, edge, ieで動いた。firefoxだけなんか動きが機敏。</li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>参考</dt>
+      <dd>
+        <ul>
+          <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Element/scrollIntoView" target="_blank">Element.scrollIntoView() - Web API | MDN</a></li>
+          <li><a href="https://www.to-r.net/media/smooth_scrolling_2019/" target="_blank">今どきのスムーズスクロール(2019年版) - to-R Media</a></li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</body>
+<!-- polyfill -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script>
+<script>
+  // js-scrollクラスを持つものがクリックされたら、そこについてるidを見て、その要素のはじまりまでスクロールするよう命令
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    if(!target.classList.contains('js-scroll')) return;
+    e.preventDefault();
+    var targetId = target.hash;
+    document.querySelector(targetId).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+</script>
+</html>
