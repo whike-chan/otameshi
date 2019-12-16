@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scrollTopKirby</title>
+  <style>
+    .contents { padding: 1em 1em 80em; background-color: #6482F2; }
+    .contents:nth-of-type(2) { background-color: #67EC89; }
+    .contents:nth-of-type(3) { background-color: #E8E4B9; }
+    .contents:nth-of-type(4) { background-color: #EEC232; }
+
+    .footer { display: flex; align-items: center; justify-content: center; height: 200px; padding: 1em; background-color: lightgray; }
+    .pagetop-wrap { display: flex; align-items: center; justify-content: center; position: relative; width: 150px; height: 150px; background-color: #fff; border-radius: 50%; margin: auto; }
+    .msg { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; z-index: 101; pointer-events: none; }
+    .pagetop { position: relative; width: 100px; height: 100px; border-radius: 50%; background-color: #f75e7a; cursor: pointer; z-index: 100; }
+    .pagetop.is-active { animation: animeReady 1s forwards, animePagetop 1.5s 1s cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards; }
+    @keyframes animeReady { 0% { transform: translateY(0); } 100% { transform: translateY(20px); } }
+    @keyframes animePagetop { 0% { top: 0; } 100% { top: -1000%; } }
+  </style>
+</head>
+<body>
+  <div class="contents"></div>
+  <div class="contents"></div>
+  <div class="contents"></div>
+  <div class="contents"></div>
+
+  <footer class="footer">
+    <div class="pagetop-wrap">
+      <span class="msg">click!</span>
+      <div id="js_pagetop" class="pagetop"></div>
+    </div>
+  </footer>
+
+  <dl>
+    <dt>メモ</dt>
+    <dd>
+      <ul>
+        <li>スクロールさせるときにやっぱりjQueryが必要だった。easeInQuartのためにjQuery Easing Pluginも使用した。<br>現在位置の計算をVanillaJSでやってみたけど、jQuery入れてるからoffsetでやったほうがラク。</li>
+        <li>polyfill使えばIEも対応できた（Flexboxが壊れたけど）</li>
+        <li>だいたいいい感じだけど、改めてカービィ見るとめっちゃきれい。微調整がんばればいけるかな・・</li>
+      </ul>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>参考</dt>
+    <dd>
+      <ul>
+        <li><a href="https://kirbycafe.jp/tokyo/" target="_blank">KIRBY CAFÉ / カービィカフェ 公式サイト</a></li>
+        <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Web_Animations_API">ウェブアニメーション API - Web API | MDN</a></li>
+        <li><a href="https://nulab.com/ja/blog/nulab/web-animations-api/" target="_blank">Web Animations APIとは？ブラウザのネイティブAPIで広がるアニメーションの世界 | 株式会社ヌーラボ(Nulab inc.)</a></li>
+        <li><a href="https://cdnjs.com/libraries/web-animations" target="_blank">web-animations - cdnjs.com - The best FOSS CDN for web related libraries to speed up your websites!</a></li>
+        <li><a href="http://semooh.jp/jquery/cont/doc/easing/" target="_blank">jQuery Easing - jQuery 日本語リファレンス</a></li>
+        <li><a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">jQuery Easing Plugin</a></li>
+      </ul>
+    </dd>
+  </dl>
+
+  <!-- jquery cdn -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <!-- jquery easing -->
+  <script>
+    jQuery.extend( jQuery.easing,
+    {
+      easeInQuart: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t + b;
+      }
+    });
+  </script>
+
+  <!-- web-animations polyfill cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
+
+  <script>
+    var pagetop = document.getElementById('js_pagetop');
+    var duration = 2000;
+
+    pagetop.addEventListener('click', function() {
+      // 準備のアニメ
+      var funcAnimeReady =pagetop.animate([
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(20px)' }
+      ], {
+        duration: 1000,
+      });
+      funcAnimeReady.addEventListener('finish', function() {
+        // 上までぶっとばす
+        var rect = pagetop.getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var offsetTop = rect.top + scrollTop;
+        var funcAnimePagetop = pagetop.animate([
+          { top: '0' },
+          { top: '-' + offsetTop + 'px' }
+        ], {
+          delay: 50,
+          duration: duration,
+          easing: 'cubic-bezier(0.895, 0.03, 0.685, 0.22)' // easeInQuart
+        });
+
+        // スクロールさせる
+        $('html, body').animate(
+          { scrollTop: 0 },
+          duration, 'easeInQuart'
+        );
+        return false;
+      });
+    });
+  </script>
+</body>
+</html>
