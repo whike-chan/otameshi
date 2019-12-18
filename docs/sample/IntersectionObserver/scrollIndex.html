@@ -13,15 +13,24 @@
     .content:nth-of-type(3) .image { background-color: #E3F2FA; }
     .content:nth-of-type(4) .image { background-color: #F2BC57; }
 
-    .contents { width: calc(100% - 135px); }
-    .nav { position: fixed; width: 110px; top: 1em; right: 1em; }
+    .contents { width: calc(100% - 130px); }
+    .nav { position: fixed; width: 120px; top: 1em; right: 1em; }
     .link { color: black; position: relative; display: inline-block; text-decoration: none; margin-bottom: .8em; }
-    .link::before { content: ""; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background-color: #FC530F; transition: all .2s; }
+    .link::before { content: ""; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #FC530F; transition: all .2s; }
     .link.is-current::before { width: 100%; }
   </style>
 </head>
 <body>
   <h1>現在のコンテンツに合わせて目次を変える</h1>
+
+  <nav class="nav" id="js_nav">
+    <ul>
+      <li><a href="#ebi" class="link">EBI</a></li>
+      <li><a href="#kani" class="link">KANI</a></li>
+      <li><a href="#ika" class="link">IKA</a></li>
+      <li><a href="#maguro" class="link">MAGURO</a></li>
+    </ul>
+  </nav>
 
   <div class="contents">
     <div id="ebi" class="content">
@@ -50,18 +59,15 @@
     </div>
   </div>
 
-  <nav class="nav">
-    <ul>
-      <li><a href="#ebi" class="link">EBI</a></li>
-      <li><a href="#kani" class="link">KANI</a></li>
-      <li><a href="#ika" class="link">IKA</a></li>
-      <li><a href="#maguro" class="link">MAGURO</a></li>
-    </ul>
-  </nav>
-
   <dl>
     <dt>メモ</dt>
-    <dd>まだ途中</dd>
+    <dd>
+      <ul>
+        <li>いい感じ</li>
+        <li>コンテンツ量によっては意図しないカレント表示になるかも。ウィンドウの大きさにも影響されるからざっくりと使う</li>
+        <li>IEはpolyfillが必要</li>
+      </ul>
+    </dd>
   </dl>
 
   <dl>
@@ -69,15 +75,16 @@
     <dd><a href="https://ics.media/entry/190902/" target="_blank">JSでのスクロール連動エフェクトにはIntersection Observerが便利 - ICS MEDIA</a></dd>
   </dl>
 
-
+  <!-- io polyfill -->
+  <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.js"></script>
   <script>
-    // 監視対象
-    var contents = document.querySelectorAll('.content');
+    // 対象
+    var contents = Array.prototype.slice.call(document.querySelectorAll('.content'),0);
 
     // オプション
     var options = {
       root: null,
-      rootMargin: '-50% 0px',
+      rootMargin: '-40% 0px -60%', // '-50% 0px'にするとちょうど真ん中で検知する。 少し上にしてみた
       threshold: 0
     };
 
@@ -104,10 +111,35 @@
      * @param element
      */
     function activateIndex(element) {
-
+      var classCurrent = 'is-current';
+      var currentActiveIndex = document.querySelector('#js_nav .' + classCurrent);
+      if(currentActiveIndex !== null) {
+        currentActiveIndex.classList.remove(classCurrent);
+      }
+      var newActiveIndex = document.querySelector('a[href="#' + element.id + '"]');
+      newActiveIndex.classList.add(classCurrent);
     }
-
-
   </script>
+
+  <!-- 以下はスクロールの制御なので関係ない -->
+  <!-- Smooth Scroll behavior polyfill -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script>
+  <script>
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      if(!target.classList.contains('link')) return;
+      e.preventDefault();
+      var targetId = target.hash;
+      var targetElm = document.querySelector(targetId);
+      var rectTop = targetElm.getBoundingClientRect().top;
+      var offsetTop = window.pageYOffset;
+      var top = rectTop + offsetTop;
+      window.scrollTo({
+        top: top,
+        behavior: 'smooth'
+      })
+    });
+  </script>
+
 </body>
 </html>
