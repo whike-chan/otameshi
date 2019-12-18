@@ -48,8 +48,8 @@
       <dt>メモ</dt>
       <dd>
         <ul>
-          <li>scrollToのoptionがIE効かない。</li>
-          <li>headerがfixedとかあるあるだしこれ使いたいけど、やっぱデフォルトでIEをsmoothさせるのは難しいのか。</li>
+          <li>polyfill入れればIEでも動いた!</li>
+          <li>スピード調整はできない</li>
         </ul>
       </dd>
     </dl>
@@ -58,12 +58,14 @@
       <dd>
         <ul>
           <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Window/scroll" target="_blank">window.scroll - Web API | MDN</a></li>
+          <li><a href="http://iamdustan.com/smoothscroll/" target="_blank">Smooth Scroll behavior polyfill</a></li>
           <li><a href="https://www.to-r.net/media/smooth_scrolling_2019/" target="_blank">今どきのスムーズスクロール(2019年版) - to-R Media</a></li>
         </ul>
       </dd>
     </dl>
   </div>
-</body>
+<!-- Smooth Scroll behavior polyfill -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script>
 <script>
   // js-scrollクラスを持つものがクリックされたら
   document.addEventListener('click', function(e) {
@@ -78,9 +80,10 @@
     var top = rectTop + offsetTop - buffer;
     // 飛び先の位置 + 現在の位置 - 調整（今回は固定ヘッダー分）まで移動
     window.scrollTo({
-      top,
+      top: top,
       behavior: 'smooth'
     });
   });
 </script>
+</body>
 </html>
