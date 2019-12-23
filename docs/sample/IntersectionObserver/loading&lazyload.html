@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>loading&amp;lazyload test</title>
+  <style>
+    .content { margin-bottom: 5em; }
+  </style>
+</head>
+<body>
+  <p>loading属性と交差監視lazyloadの組み合わせ</p>
+
+  <p>メインビジュアルエリアはlazyloadの対象外</p>
+  <img src="./img/img1.jpg" alt="IMAGE1">
+
+  <dl>
+    <dt>HOKKE</dt>
+    <dd class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis eligendi, harum labore quam corporis ducimus quis odit sunt libero tempore magni ipsa veniam soluta voluptatum suscipit accusamus voluptatem commodi.<br>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="IMAGE2" loading="lazy" class="lazyload" width="640" height="480" data-src="./img/img2.jpg">
+    </dd>
+
+    <dt>AJI</dt>
+    <dd class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis eligendi, harum labore quam corporis ducimus quis odit sunt libero tempore magni ipsa veniam soluta voluptatum suscipit accusamus voluptatem commodi.<br>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="IMAGE3" loading="lazy" class="lazyload" width="640" height="480" data-src="./img/img3.jpg">
+    </dd>
+
+    <dt>SHISHAMO</dt>
+    <dd class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis eligendi, harum labore quam corporis ducimus quis odit sunt libero tempore magni ipsa veniam soluta voluptatum suscipit accusamus voluptatem commodi.<br>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="IMAGE4" loading="lazy" class="lazyload" width="640" height="480" data-src="./img/img4.jpg">
+    </dd>
+
+    <dt>TARA</dt>
+    <dd class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis eligendi, harum labore quam corporis ducimus quis odit sunt libero tempore magni ipsa veniam soluta voluptatum suscipit accusamus voluptatem commodi.<br>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="IMAGE5" loading="lazy" class="lazyload" width="640" height="480" data-src="./img/img5.jpg">
+    </dd>
+
+    <dt>KUE</dt>
+    <dd class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis eligendi, harum labore quam corporis ducimus quis odit sunt libero tempore magni ipsa veniam soluta voluptatum suscipit accusamus voluptatem commodi.<br>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="IMAGE6" loading="lazy" class="lazyload" width="640" height="480" data-src="./img/img6.jpg">
+    </dd>
+
+    <dt>TAI</dt>
+    <dd class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis eligendi, harum labore quam corporis ducimus quis odit sunt libero tempore magni ipsa veniam soluta voluptatum suscipit accusamus voluptatem commodi.<br>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="IMAGE7" loading="lazy" class="lazyload" width="640" height="480" data-src="./img/img7.jpg">
+    </dd>
+
+    <dt>SAWARA</dt>
+    <dd class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis eligendi, harum labore quam corporis ducimus quis odit sunt libero tempore magni ipsa veniam soluta voluptatum suscipit accusamus voluptatem commodi.<br>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="IMAGE8" loading="lazy" class="lazyload" width="640" height="480" data-src="./img/img8.jpg">
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>メモ</dt>
+    <dd>
+      <ul>
+        <li>いったん、retina対応やPC/SPの切り替えは考えずに、loading属性とIntersectionObserverによるlazyloadの組み合わせのみをテストする</li>
+        <li>PCは全ブラウザ動作確認済</li>
+      </ul>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>参考</dt>
+    <dd>
+      <ul>
+        <li><a href="https://coliss.com/articles/build-websites/operation/work/native-image-lazy-loading.html" target="_blank">Chromeに実装される新機能『loading属性』について解説、ついにブラウザがネイティブで遅延ロードをサポート | コリス</a></li>
+        <li><a href="https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video?hl=ja" target="_blank">イメージと動画の遅延読み込み  |  Web Fundamentals  |  Google Developers</a></li>
+      </ul>
+    </dd>
+  </dl>
+
+  <!-- io polyfill -->
+  <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.js"></script>
+
+  <script>
+    // 処理対象（共通）
+    var target = Array.prototype.slice.call(document.querySelectorAll('.lazyload'),0);
+
+    // loading属性に対応している場合
+    if('loading' in HTMLImageElement.prototype) {
+      // srcを書き換える
+      target.forEach(function(img) {
+        img.src = img.dataset.src;
+      });
+
+    } else {
+    // 非対応の場合
+      // ioオプション
+      var options = {
+        root: null,
+        rootMargin: '0px 0px 30%', // 対象よりちょい上で発火
+        threshold: 0
+      };
+
+      // オブザーバー設定 監視ファイル指定
+      var observer = new IntersectionObserver(ignition,options);
+      target.forEach(function(img) {
+        observer.observe(img);
+      });
+
+      // 発火
+      function ignition(images) {
+        images.forEach(function(img) {
+          if(img.isIntersecting) {
+            img.target.src = img.target.dataset.src;
+          }
+        })
+      }
+    }
+  </script>
+
+</body>
+</html>
