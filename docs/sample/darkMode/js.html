@@ -62,32 +62,38 @@
 
   // ローカルストレージと、ライトモードかどうか（ie,edgeには無意味）をチェック
   if(localTheme === 'light') {
-    turnLightMode();
+    changeMode('light');
   } else if(localTheme === 'dark') {
-    turnDarkMode();
+    changeMode('dark');
   } else if(isLight) {
-    turnLightMode();
+    changeMode('light');
   }
 
   // チェックボックスでの切り替え、選択をローカルストレージに保存
   checkToggle.addEventListener('change', function(e) {
     if(e.target.checked) {
-      turnLightMode();
+      changeMode('light');
       localStorage.setItem('theme-mode','light');
     } else {
-      turnDarkMode();
+      changeMode('dark');
       localStorage.setItem('theme-mode','dark');
     }
   });
 
-  function turnLightMode() {
-    document.body.classList.add(classLight);
-    checkToggle.checked = true;
-  }
-
-  function turnDarkMode() {
-    document.body.classList.remove(classLight);
-    checkToggle.checked = false;
+  /**
+   * ダークorライトテーマ切り替え用関数
+   * @param {String} mode 'light' もしくは 'dark'
+   */
+  function changeMode(mode) {
+    if(mode === 'light') {
+      document.body.classList.add(classLight);
+      checkToggle.checked = true;
+    } else if(mode === 'dark') {
+      document.body.classList.remove(classLight);
+      checkToggle.checked = false;
+    } else {
+      return false;
+    }
   }
 </script>
 </body>
