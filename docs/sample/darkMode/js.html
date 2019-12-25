@@ -60,7 +60,7 @@
   var localTheme = localStorage.getItem('theme-mode');
   var checkToggle = document.getElementById('js_mode_toggle');
 
-  // ローカルストレージと、ライトモードかどうか（ie,edgeには無意味）をチェック
+  // ローカルストレージの中身と、端末がライトモードかどうか（ie,edgeには無意味）をチェック
   if(localTheme === 'light') {
     changeMode('light');
   } else if(localTheme === 'dark') {
