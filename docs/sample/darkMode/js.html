@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dark mode test</title>
+  <style>
+    /* 自分がダークモードデフォなのでメインをダークに */
+    body { margin: 0; padding: 1em 2em; color: #AAAE8D; background-color: #1D1D2C; transition: color .2s, background-color .2s; }
+    a { color: #AAAE8D; }
+    .msg { font-size: 30px; font-weight: bold; }
+    .dark { display: block; }
+    .light { display: none; }
+
+    /* ライトモードの場合 */
+    .js-mode-light { color: #000; background-color: whitesmoke; }
+    .js-mode-light a { color: #000; }
+    .js-mode-light .light { display: block; }
+    .js-mode-light .dark { display: none; }
+
+    /* 以下はチェックボックススタイル */
+    input { display: none; }
+    .switch { position: fixed; top: .5em; right: .5em; font-size: 60px; }
+    .switch-label { cursor: pointer; }
+    .switch-mode::before { content: "🌙"; }
+
+    .js-mode-light .switch-mode::before { content: "🌄"; }
+
+  </style>
+</head>
+<body>
+  <p class="msg light">light mode</p>
+  <p class="msg dark">dark mode</p>
+
+  <div class="switch">
+    <label class="switch-label">
+      <input type="checkbox" id="js_mode_toggle">
+      <span class="switch-mode"></span>
+    </label>
+  </div>
+
+  <dl>
+    <dt>メモ</dt>
+    <dd>
+      <ul>
+        <li>cssのメディアクエリではなくjsで判定してbodyにクラスをつけるバージョン。対応してないieとedgeはユーザーに手動で切り替えてもらうまではデフォルトの表示（このページだとダークモード）になる。</li>
+        <li>cssと組み合わせて使っても良かったけど、メディアクエリの判定とクラスを付与してのモード切替を両方書くのは面倒くさいし不要な手間なので、jsに統一した。</li>
+        <li>自分でダーク/ライトテーマを選択すると（右上のアイコンを押す）、ローカルストレージにどっちを選んでるかが保存されるので、次回訪問時も選択した方になる。PCのテーマより優先される。</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>参考</dt>
+    <dd><a href="https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme" target="_blank">prefers-color-scheme - CSS: カスケーディングスタイルシート | MDN</a></dd>
+  </dl>
+<script>
+  var classLight = 'js-mode-light';
+  var isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  var localTheme = localStorage.getItem('theme-mode');
+  var checkToggle = document.getElementById('js_mode_toggle');
+
+  // ローカルストレージと、ライトモードかどうか（ie,edgeには無意味）をチェック
+  if(localTheme === 'light') {
+    turnLightMode();
+  } else if(localTheme === 'dark') {
+    turnDarkMode();
+  } else if(isLight) {
+    turnLightMode();
+  }
+
+  // チェックボックスでの切り替え、選択をローカルストレージに保存
+  checkToggle.addEventListener('change', function(e) {
+    if(e.target.checked) {
+      turnLightMode();
+      localStorage.setItem('theme-mode','light');
+    } else {
+      turnDarkMode();
+      localStorage.setItem('theme-mode','dark');
+    }
+  });
+
+  function turnLightMode() {
+    document.body.classList.add(classLight);
+    checkToggle.checked = true;
+  }
+
+  function turnDarkMode() {
+    document.body.classList.remove(classLight);
+    checkToggle.checked = false;
+  }
+</script>
+</body>
+</html>
