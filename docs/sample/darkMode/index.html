@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dark mode test</title>
+  <style>
+    /* 自分がダークモードデフォなのでメインをダークに */
+    body { margin: 0; padding: 1em 2em; color: #AAAE8D; background-color: #1D1D2C; transition: color .2s, background-color .2s; }
+    a { color: #AAAE8D; }
+    .msg { font-size: 30px; font-weight: bold; }
+    .dark { display: block; }
+    .light { display: none; }
+
+    @media (prefers-color-scheme: light) {
+      body { color: #000; background-color: #fff; }
+      a { color: #000; }
+      .light { display: block; }
+      .dark { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+  <p class="msg light">light mode</p>
+  <p class="msg dark">dark mode</p>
+  <dl>
+    <dt>メモ</dt>
+    <dd>
+      <ul>
+        <li>PCの設定自体をライト/ダークモードで切り替えるとページの見た目が変化する</li>
+        <li>win10でしか試してないけど、設定>個人用設定>色>色を選択する>白or黒切り替え でWebページもちゃんと変化した）</li>
+        <li>デフォルトで対応してるのはchrome・firefox・safari。ieとedgeは効いてない</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>参考</dt>
+    <dd><a href="https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme" target="_blank">prefers-color-scheme - CSS: カスケーディングスタイルシート | MDN</a></dd>
+  </dl>
+<script>
+</script>
+</body>
+</html>
