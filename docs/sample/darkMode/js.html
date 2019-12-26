@@ -7,8 +7,8 @@
   <title>dark mode test</title>
   <style>
     /* 自分がダークモードデフォなのでメインをダークに */
-    body { margin: 0; padding: 1em 2em; color: #AAAE8D; background-color: #1D1D2C; transition: color .2s, background-color .2s; }
-    a { color: #AAAE8D; }
+    body { margin: 0; padding: 1em 2em; color: #AAAE8D; background-color: #1D1D2C; transition-duration: 1s; transition-property: color, background-color; }
+    a { color: #AAAE8D; transition: all 1s; }
     .msg { font-size: 30px; font-weight: bold; }
     .dark { display: block; }
     .light { display: none; }
@@ -23,10 +23,9 @@
     input { display: none; }
     .switch { position: fixed; top: .5em; right: .5em; font-size: 60px; }
     .switch-label { cursor: pointer; }
-    .switch-mode::before { content: "🌙"; }
-
-    .js-mode-light .switch-mode::before { content: "🌄"; }
-
+    .switch-mode { position: absolute; top: -120px; right: -120px; display: block; width: 200px; height: 200px; border-radius: 50%; transform: rotate(0); transition: transform 1s; }
+    .switch-mode::before { content: "🌙"; position: absolute; left: 0; bottom: 0; }
+    .switch-mode::after { content: "🌄"; position: absolute; right: 0; top: 0; transform: scale(1,-1); }
   </style>
 </head>
 <body>
@@ -36,7 +35,7 @@
   <div class="switch">
     <label class="switch-label">
       <input type="checkbox" id="js_mode_toggle">
-      <span class="switch-mode"></span>
+      <span class="switch-mode" id="js_rotate"></span>
     </label>
   </div>
 
@@ -55,22 +54,29 @@
     <dd><a href="https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme" target="_blank">prefers-color-scheme - CSS: カスケーディングスタイルシート | MDN</a></dd>
   </dl>
 <script>
+  var checkToggle = document.getElementById('js_mode_toggle');
+  var rotateIcon = document.getElementById('js_rotate');
   var classLight = 'js-mode-light';
+
   var isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
   var localTheme = localStorage.getItem('theme-mode');
-  var checkToggle = document.getElementById('js_mode_toggle');
+
+  var nowRotate = 0;
 
   // ローカルストレージの中身と、端末がライトモードかどうか（ie,edgeには無意味）をチェック
   if(localTheme === 'light') {
+    infiniteRotate();
     changeMode('light');
   } else if(localTheme === 'dark') {
     changeMode('dark');
   } else if(isLight) {
+    infiniteRotate();
     changeMode('light');
   }
 
   // チェックボックスでの切り替え、選択をローカルストレージに保存
   checkToggle.addEventListener('change', function(e) {
+    infiniteRotate();
     if(e.target.checked) {
       changeMode('light');
       localStorage.setItem('theme-mode','light');
@@ -81,7 +87,7 @@
   });
 
   /**
-   * ダークorライトテーマ切り替え用関数
+   * ダークorライトテーマ切り替え
    * @param {String} mode 'light' もしくは 'dark'
    */
   function changeMode(mode) {
@@ -94,6 +100,15 @@
     } else {
       return false;
     }
+  }
+
+  /**
+   * 月と太陽アイコン無限回転
+   * 呼ばれるたびに180度角度が追加されていく
+   */
+  function infiniteRotate() {
+    nowRotate += 180;
+    rotateIcon.style.transform = 'rotate(' + nowRotate + 'deg)';
   }
 </script>
 </body>

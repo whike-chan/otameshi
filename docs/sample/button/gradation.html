@@ -5,11 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>gradation button test</title>
+  <style>
+    /* reset */
+    button { background-color: transparent; border: none; cursor: pointer; outline: none; padding: 0; -moz-appearance: none; -webkit-appearance: none; }
+
+    body { background-color: whitesmoke; }
+    dt { margin: 2em 0 .3em; }
+
+    .button1 {
+      padding: 2px;
+      background: -webkit-linear-gradient(to right, #ff6e7f, #bfe9ff);
+      background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+    }
+    .button1 .button1-bg { display: block; padding: 1em 1.5em; background-color: #fff; transition: all .2s; }
+    .button1:hover .button1-bg { color: #fff; background-color: transparent; }
+    .button1-2 { margin-left: 20px; border-radius: 12px; }
+    .button1-2 .button1-bg { border-radius: 10px; }
+
+    .button2 {
+      padding: 1em 1.5em;
+      border: 2px solid transparent;
+      border-image: url('./image.png') 1 stretch;
+      background-color: transparent;
+      transition: all .2s;
+    }
+    .button2:hover {
+      color: #fff;
+      background: -webkit-linear-gradient(to right, #ff6e7f, #bfe9ff);
+      background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+    }
+
+    .button3 {
+      padding: 2px;
+      background: -webkit-linear-gradient(to right, #ff6e7f, #bfe9ff);
+      background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+      background-size: 300% 300%;
+      animation: button3Anime 2s linear alternate infinite;
+    }
+    .button3 .button3-bg { display: block; padding: 1em 1.5em; background-color: #fff; transition: all .2s; }
+    .button3:hover .button3-bg { color: #fff; background-color: transparent; }
+    .button3-2 { margin-left: 20px; border-radius: 12px; }
+    .button3-2 .button3-bg { border-radius: 10px; }
+    @keyframes button3Anime {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 0; }
+    }
+  </style>
 </head>
 <body>
   <dl>
+    <dt>重ねるやつ 背景色に対応できないけどこれがいい</dt>
+    <dd>
+      <button class="button1"><span class="button1-bg">BUTTON1</span></button>
+      <button class="button1 button1-2"><span class="button1-bg">BUTTON1</span></button>
+    </dd>
+
+    <dt>border-image使うやつ 枠は綺麗に行くけどホバーと角丸がだめ</dt>
+    <dd>
+      <button class="button2">BUTTON2</button>
+    </dd>
+
+    <dt>枠線の色が変わるやつ 背景むり ホバーはこれでいいんだろうか</dt>
+    <dd>
+      <button class="button3"><span class="button3-bg">BUTTON3</span></button>
+      <button class="button3 button3-2"><span class="button3-bg">BUTTON3</span></button>
+    </dd>
+  </dl>
+
+  <dl>
     <dt>メモ</dt>
-    <dd>まだ</dd>
+    <dd>背景色がコンテンツと合わせられなくても別にいいんじゃないかなっておもった</dd>
   </dl>
 </body>
 </html>
