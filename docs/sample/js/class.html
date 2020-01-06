@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>class</title>
+  <style>
+    h1 { font-size: 1.8em; }
+    pre { margin: 0; }
+    code { line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <p>この方の記事がとてもわかりやすいので、写しながら理解する<br><a href="https://qrunch.net/@tomoreb/entries/hXhPU119w1ZVTAjQ" target="_blank">JavaScriptでclass構文を使う際の簡単なまとめ | Qrunch（クランチ）</a></p>
+
+  <h1>クラス構文</h1>
+
+  <h2>class</h2>
+  <p>雛形を作成するためのキーワード。classキーワードを使って定義すると、テンプレートとなるオブジェクトを作成できる。<br>クラス宣言文とクラス式の２種類がある。</p>
+
+  <h3>クラス宣言文</h3>
+  <p>クラス宣言文は、classキーワードを使って class クラス名 { }と定義する。</p>
+  <pre><code>class games { };</code></pre>
+
+  <h3>クラス式</h3>
+  <p>クラス式は、クラスを値として定義し、変数に代入する。クラス名を省略することができる。</p>
+<pre>
+  <code>const game = class game {};
+  const game = class {}; //省略ver.</code>
+</pre>
+
+  <h2>インスタンス</h2>
+  <p>
+    classキーワードで定義したオブジェクト（プロトタイプ）をベースに作成したオブジェクトをインスタンスと呼ぶ。<br>インスタンスはnewキーワードを使って作成する。インスタンスを作成することをインスタンス化と呼ぶ。<br>instanceof演算子を使うと、ベースとなったオブジェクト（プロトタイプ）を判定することができる。
+  </p>
+<pre>
+  <code>class Game {
+
+  };
+  // class宣言文で定義したGameをインスタンス化
+  const skyrim = new Game();
+  // プロトタイプ Gameは使い回せる
+  const witcher = new Game();
+
+  // 同じプロトタイプを元に作成したが上記２つは異なるインスタンス
+  console.log(skyrim === witcher); // => false
+
+  // ベースとなったオブジェクト（プロトタイプ）を判定するにはinstanceofを使う
+  console.log(skyrim instanceof Game); // => true</code>
+</pre>
+<script>
+  console.log('【インスタンス】');
+  class Game {};
+  const skyrim = new Game();
+  const witcher = new Game();
+  console.log(skyrim === witcher);
+  console.log(skyrim instanceof Game);
+</script>
+
+  <h2>constructor（コンストラクタ）</h2>
+  <p>コンストラクタは、クラス内で使われる特殊なメソッド。<br>インスタンス化の際に必ず実行されるメソッドで、この中に新しく作成されるインスタンスオブジェクトの初期化処理などを記述していく。初期化処理はnew演算子にセットした引数がコンストラクタの仮引数に渡され、インスタンスオブジェクト（this）へ代入される。<br>不要な場合は省略することができ、その場合は空のコンストラクタが自動的に定義される。</p>
+<pre>
+  <code>class Color {
+    // コンストラクタ関数の仮引数としてnameとrateを定義
+    constructor(name, rate) {
+      // コンストラクタ関数のthisはインスタンスを示すオブジェクト
+      // インスタンスのnameとrateプロパティに値を設定する
+      this.name = name;
+      this.rate = rate;
+    }
+  }
+
+  const Color = class {}; //コンストラクタは省略可
+
+  // new演算子でインスタンスを作成してプロトタイプのコンストラクタの仮引数に引数を渡す
+  const blue = new Color(blue, 5);
+  console.log(blue.name); // => skyrim
+  console.log(blue.rate); // => 5</code>
+</pre>
+<script>
+  console.log('【constructor（コンストラクタ）】');
+  class Color {
+    constructor(name, rate) {
+      this.name = name;
+      this.rate = rate;
+    }
+  };
+  const blue = new Color('blue', 5);
+  console.log(blue.name);
+  console.log(blue.rate);
+</script>
+
+  <h2>インスタンスメソッド ここからわからない</h2>
+  <p>インスタンスメソッドは、クラスにメソッドを定義したもの。<br>定義したメソッドの中からインスタンスを参照するにはthisを使用する。</p>
+<pre>
+  <code>class クラス {
+    メソッド() {
+      // ここでのthisはベースオブジェクトを参照
+    }
+  }
+
+  const インスタンス = new クラス();
+  // メソッド呼び出しのベースオブジェクト（this）はインスタンスとなる
+  インスタンス.メソッド();
+  </code>
+</pre>
+
+  <h2>staticメソッド（静的メソッド）</h2>
+  <p>staticメソッドは、クラスをインスタンス化せずに利用できるメソッド。クラス経由で実行されるため、インスタンスの状態（値）を利用できない。<br>staticメソッドを定義する際は、メソッド名の前にstaticとつける。クラス名.staticメソッド名()で実行する。</p>
+<pre>
+  <code>class クラス {
+    static メソッド() {
+    }
+  }
+  // 呼び出し
+  クラス.メソッド();</code>
+</pre>
+
+  <h2>継承</h2>
+  <p>継承は、既存クラスの特性（プロパティやメソッド）を引き継いだ新しいクラスを定義すること。<br>extendsキーワードを使い継承元となる親クラスを指定することで、特性を引き継いだ新しいクラス（子クラス）を定義できる。</p>
+<pre>
+  <code>class 子クラス extends 親クラス {
+
+  };</code>
+</pre>
+  <p>親クラスのメソッドを修正・削除した場合、子クラスも同様の影響を受けるため注意が必要。</p>
+
+  <dl>
+    <dt>参考</dt>
+    <dd>
+      <ul>
+        <li><a href="https://qrunch.net/@tomoreb/entries/hXhPU119w1ZVTAjQ" target="_blank">JavaScriptでclass構文を使う際の簡単なまとめ | Qrunch（クランチ）</a></li>
+        <li><a href="https://qiita.com/JPNYKW/items/248f99c94c00c3d1aa27" target="_blank">JavaScript初心者にclassを伝える - Qiita</a></li>
+      </ul>
+    </dd>
+  </dl>
+</body>
+</html>
