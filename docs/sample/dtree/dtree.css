@@ -4,12 +4,14 @@ svg {
 
 .linage {
   fill: none;
-  stroke: #000;
+  stroke: #C8B6A1;
+  stroke-width: 2px;
 }
 
 .marriage {
   fill: none;
-  stroke: black;
+  stroke: #C8B6A1;
+  stroke-width: 3px;
 }
 .marriage.is-divorced {
   stroke-width: 3px;

@@ -20,91 +20,71 @@
 
 /* card */
 .card-wrapper {
-  position: relative;
-  width: 84px;
-  height: 116px;
   text-align: center;
-  padding: 6px 6px 0 0;
   font-size: 12px;
 }
-.card-wrapper.is-inheritee .card-bg {
+.card-wrapper.is-inheritee .card-person {
   background-color: #FEF6E6;
 }
-.card-wrapper.is-deceased {
-  filter: grayscale(100%);
-}
 .card-wrapper.is-deceased .card-image {
-  position: relative;
+  margin-top: -6px;
 }
-.card-wrapper.is-deceased .card-image::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 72px;
-  background: transparent url("./img/frame-deceased.svg") no-repeat center top/100%;
-}
-.card-wrapper.is-you::after {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 0;
-  width: calc(100% - 6px);
-  height: calc(100% - 3px);
-  border: 2px solid #000;
-}
-.card-wrapper.is-you .card-bg::before {
-  content: "あなた";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 10px;
-  color: #fff;
-  background-color: #000;
-  padding: 1px 2px;
-}
-.card-bg {
-  position: relative;
-  padding: 8px 7px;
-  background-color: #fff;
+.card-wrapper.is-you .card-person {
+  border-color: #000;
 }
 .card-share {
-  position: absolute;
-  height: 20px;
-  line-height: 20px;
-  top: 0;
-  right: 0;
+  display: block;
+  text-align: right;
+}
+.card-share-num {
+  display: inline-block;
+  vertical-align: top;
   color: #fff;
+  height: 25px;
+  line-height: 25px;
   padding: 0 6px;
   background-color: #CB4949;
   border-radius: 4px;
   font-weight: bold;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
-  z-index: 1;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
-.card-share:empty {
-  display: none;
+.card-share-num:empty {
+  opacity: 0;
 }
-.card-share::before {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 5px;
-  -webkit-clip-path: polygon(100% 0, 0 0, 22% 100%);
-          clip-path: polygon(100% 0, 0 0, 22% 100%);
-  background-color: #CB4949;
-  bottom: -5px;
-  left: 0;
-  right: 0;
+.card-person {
+  width: 90%;
+  margin: -15px auto 0;
+  background-color: #fff;
+  border: 2px solid transparent;
+}
+.card-image {
+  width: 100%;
+}
+.card-image img {
+  display: block;
   margin: auto;
-  z-index: 10;
+}
+.card-you {
+  height: 18px;
+  line-height: 18px;
+  text-align: left;
+  margin: -2px 0 0 -2px;
+}
+.card-you-tag {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 4px;
+  font-size: 10px;
+  color: #fff;
+  background-color: #000;
+}
+.card-you-tag:empty {
+  opacity: 0;
 }
 .card-relation {
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 1.2;
-  height: 28px;
+  height: 36px;
 }/*# sourceMappingURL=style.css.map */

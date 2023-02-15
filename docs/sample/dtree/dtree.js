@@ -51,14 +51,11 @@ treeJson = d3.json("./data.json", function(error, treeData) {
             //         return text;
             //     },
             callbacks: {
+                // ラッパー
                 nodeRenderer: function(name, x, y, height, width, extra, id, nodeClass, textClass, textRenderer) {
-                    // This callback is optional but can be used to customize the
-                    // node element using HTML.
                     let node = '';
-                    node += '<div ';
-                    node += 'style="height:100%;width:100%;" ';
-                    // node += 'class="' + nodeClass + '" ';
-                    node += 'class="';
+                    node += '<div width="82" height="106" ';
+                    node += 'class="card-wrapper ';
                     if (extra && extra.inheritee) {
                         // 分配対象者
                         node += 'is-inheritee ';
@@ -75,19 +72,43 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                     node += '</div>';
                     return node;
                 },
+                // 内容
                 textRenderer: function(name, extra, textClass) {
-                    // THis callback is optinal but can be used to customize
-                    // how the text is rendered without having to rewrite the entire node
-                    // from screatch.
                     let text = '';
-                    text += '<div>';
                     // 分配割合
+                    text += `<div class="card-share"><span class="card-share-num">`;
                     if (extra && extra.share) {
-                        text += `<div>${extra.share}</div>`;
+                        text += `${extra.share}`;
                     }
-                    text += '<div>';
-                    text += `<span>${name}</span>`;
-                    text += '</div>'
+                    text += `</span></div>`;
+
+                    // 画像+続柄ラッパー
+                    text += '<div width="72" height="96" class="card-person">';
+
+                    // あなた
+                    text += '<div class="card-you"><span class="card-you-tag">';
+                    if (extra && extra.you) {
+                        text += 'あなた';
+                    }
+                    text += '</span></div>';
+
+                    // 画像
+                    text += '<div class="card-image">';
+                    // 故人
+                    if(extra && extra.deceased) {
+                        text += `<img src="./img/${extra.image}_deceased.png" alt="" width="64" height="64">`
+                    } else if (extra && extra.image) {
+                        text += `<img src="./img/${extra.image}.png" alt="" width="52" height="52">`
+                    } else {
+                        text += `<img src="./img/young-man.png" alt="" width="52" height="52">`
+                    }
+                    text += '</div>';
+
+                    // 続柄
+                    text += `<span class="card-relation">${name}</span>`;
+
+                    text += '</div>';
+
                     return text;
                 }
             }
