@@ -80,12 +80,14 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                     // how the text is rendered without having to rewrite the entire node
                     // from screatch.
                     let text = '';
-                    text += '<p align="center">';
-                    // if (extra && extra.nickname) {
-                    //     text += name + " (" + extra.nickname + ")";
-                    // }
+                    text += '<div>';
+                    // 分配割合
+                    if (extra && extra.share) {
+                        text += `<div class="card-share">${extra.share}</div>`;
+                    }
+                    text += '<div class="card-bg">';
                     text += `<span class="card-relation">${name}</span>`;
-                    text += '</p>'
+                    text += '</div>'
                     return text;
                 }
             }
