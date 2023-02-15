@@ -65,7 +65,7 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                   // node element using HTML.
                   let node = '';
                   node += '<div ';
-                //   node += 'style="height:100%;width:100%;" ';
+                  node += 'style="height:100%;width:100%;" ';
                   node += 'class="card-wrapper" ';
                   node += 'id="node' + id + '">\n';
                   node += textRenderer(name, extra, textClass);
