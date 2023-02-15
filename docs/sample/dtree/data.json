@@ -1,0 +1,156 @@
+[{
+    "name": "父",
+    "extra": {
+        "inheritee": false,
+        "deceased": true,
+        "share": "",
+        "image": "father",
+        "you": false,
+        "zensai": false
+    },
+    "marriages": [{
+      "spouse": {
+        "name": "母",
+        "extra": {
+            "inheritee": false,
+            "deceased": false,
+            "share": "",
+            "image": "mother",
+            "you": false,
+            "zensai": false
+        }
+      },
+      "children": [{
+        "name": "被相続人",
+        "extra": {
+            "inheritee": false,
+            "deceased": true,
+            "share": "",
+            "image": "man",
+            "you": false,
+            "zensai": false
+        },
+        "marriages": [
+          {
+            "spouse": {
+              "name": "配偶者",
+              "extra": {
+                  "inheritee": true,
+                  "deceased": false,
+                  "share": "1/2",
+                  "image": "woman",
+                  "you": false,
+                  "zensai": false
+              }
+            },
+            "children": [{
+              "name": "長男",
+              "extra": {
+                  "inheritee": true,
+                  "deceased": false,
+                  "share": "1/20",
+                  "image": "young-man",
+                  "you": true,
+                  "zensai": false
+              },
+              "children": [{
+                  "name": "子(5人)",
+                  "extra": {
+                      "inheritee": false,
+                      "deceased": false,
+                      "share": "",
+                      "image": "child",
+                      "you": false,
+                      "zensai": false
+                  }
+              }]
+            }, {
+              "name": "長女",
+              "extra": {
+                  "inheritee": false,
+                  "deceased": true,
+                  "share": "",
+                  "image": "young-woman",
+                  "you": false,
+                  "zensai": false
+              },
+              "children": [{
+                  "name": "子(5人)",
+                  "extra": {
+                      "inheritee": true,
+                      "deceased": false,
+                      "share": "1/20",
+                      "image": "child",
+                      "you": false,
+                      "zensai": false
+                  }
+              }]
+            }, {
+              "name": "次男",
+              "extra": {
+                  "inheritee": true,
+                  "deceased": false,
+                  "share": "1/20",
+                  "image": "young-man",
+                  "you": false,
+                  "zensai": false
+              }
+            }, {
+              "name": "次女",
+              "extra": {
+                  "inheritee": true,
+                  "deceased": false,
+                  "share": "1/20",
+                  "image": "young-woman",
+                  "you": false,
+                  "zensai": false
+              }
+            }, {
+              "name": "三女",
+              "extra": {
+                  "inheritee": true,
+                  "deceased": false,
+                  "share": "1/20",
+                  "image": "young-woman",
+                  "you": false,
+                  "zensai": false
+              }
+            }]
+          },
+          {
+            "spouse": {
+              "name": "前妻",
+              "extra": {
+                  "inheritee": false,
+                  "deceased": false,
+                  "share": "",
+                  "image": "woman2",
+                  "zensai": true
+              }
+            },
+            "children": [{
+                "name": "前妻の子(5人)",
+                "extra": {
+                    "inheritee": true,
+                    "deceased": false,
+                    "share": "5/20",
+                    "image": "young-man2",
+                    "you": false,
+                    "zensai": false
+                }
+            }]
+          }
+        ]
+      },{
+        "name": "兄弟(4人)",
+        "extra": {
+            "inheritee": false,
+            "deceased": false,
+            "share": "",
+            "image": "man2",
+            "you": false,
+            "zensai": false
+        }
+      }]
+    }]
+  }]
