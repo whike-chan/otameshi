@@ -57,7 +57,9 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                     let node = '';
                     node += '<div ';
                     node += 'style="height:100%;width:100%;" ';
-                    node += 'class="' + nodeClass + '" ';
+                    // node += 'class="' + nodeClass + '" ';
+                    node += 'class="';
+                    node += '" ';
                     node += 'id="node' + id + '">\n';
                     node += textRenderer(name, extra, textClass);
                     node += '</div>';
