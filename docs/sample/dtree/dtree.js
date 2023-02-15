@@ -79,9 +79,14 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                     // THis callback is optinal but can be used to customize
                     // how the text is rendered without having to rewrite the entire node
                     // from screatch.
-                    if (extra && extra.nickname)
-                        name = name + " (" + extra.nickname + ")";
-                    return "<p align='center' class='" + textClass + "'>" + name + "</p>";
+                    let text = '';
+                    text += '<p align="center">';
+                    // if (extra && extra.nickname) {
+                    //     text += name + " (" + extra.nickname + ")";
+                    // }
+                    text += `<span class="card-relation">${name}</span>`;
+                    text += '</p>'
+                    return text;
                 }
             }
         }
