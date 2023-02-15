@@ -58,7 +58,7 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                     // from screatch.
                     if (extra && extra.nickname)
                       name = name + " (" + extra.nickname + ")";
-                    return "<p align='center' class='" + textClass + "'>" + name + "</p>";
+                    return "<p align='center' class='" + textClass + "'><img src='./img/young-man.png' alt='' width='64' height='64'>" + name + "</p>";
                 },
                 nodeRenderer: function(name, x, y, height, width, extra, id, nodeClass, textClass, textRenderer) {
                   // This callback is optional but can be used to customize the
@@ -66,7 +66,7 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                   let node = '';
                   node += '<div ';
                   node += 'style="height:100%;width:100%;" ';
-                  node += 'class="card-wrapper" ';
+                  node += 'class="' + nodeClass + '" ';
                   node += 'id="node' + id + '">\n';
                   node += textRenderer(name, extra, textClass);
                   node += '</div>';
