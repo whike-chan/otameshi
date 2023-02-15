@@ -83,10 +83,10 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                     text += '<div>';
                     // 分配割合
                     if (extra && extra.share) {
-                        text += `<div class="card-share">${extra.share}</div>`;
+                        text += `<div>${extra.share}</div>`;
                     }
-                    text += '<div class="card-bg">';
-                    text += `<span class="card-relation">${name}</span>`;
+                    text += '<div>';
+                    text += `<span>${name}</span>`;
                     text += '</div>'
                     return text;
                 }
