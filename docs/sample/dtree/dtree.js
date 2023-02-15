@@ -59,6 +59,16 @@ treeJson = d3.json("./data.json", function(error, treeData) {
                     node += 'style="height:100%;width:100%;" ';
                     // node += 'class="' + nodeClass + '" ';
                     node += 'class="';
+                    if (extra && extra.inheritee) {
+                        // 分配対象者
+                        node += 'is-inheritee ';
+                    } else if(extra && extra.deceased) {
+                        // 故人
+                        node += 'is-deceased ';
+                    }
+                    if (extra && extra.you) {
+                        node += 'is-you ';
+                    }
                     node += '" ';
                     node += 'id="node' + id + '">\n';
                     node += textRenderer(name, extra, textClass);
