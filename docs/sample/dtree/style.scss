@@ -19,8 +19,6 @@
 /* card */
 .card {
     &-wrapper {
-        // width: 82px;
-        // height: 106px;
         text-align: center;
         font-size: 12px;
         // 相続対象者
@@ -28,11 +26,20 @@
             .card-person {
                 background-color: #FEF6E6;
             }
+            .card-share {
+                opacity: 1;
+            }
         }
         // 故人
         &.is-deceased {
+            .card-person {
+                background-color: transparent;
+            }
             .card-image {
               margin-top: -6px;
+            }
+            .card-relation {
+                background-color: #fff;
             }
         }
         // あなた
@@ -45,7 +52,9 @@
     // 相続割合（吹き出し）
     &-share {
         display: block;
+        margin-right: 3px;
         text-align: right;
+        opacity: 0;
         &-num {
             display: inline-block;
             vertical-align: top;
@@ -57,31 +66,25 @@
             border-radius: 4px;
             font-weight: bold;
             box-shadow: 2px 2px 2px rgba(0,0,0,.2);
-            &:empty {
-                opacity: 0;
-            }
         }
         // 吹き出しの三角
-        // &::before {
-        //     content: '';
-        //     position: absolute;
-        //     width: 6px;
-        //     height: 5px;
-        //     clip-path: polygon(100% 0, 0 0, 22% 100%);
-        //     background-color: #CB4949;
-        //     bottom: -5px;
-        //     left: 0;
-        //     right: 0;
-        //     margin: auto;
-        //     z-index: 10;
-        // }
+        &-deco {
+            display: inline-block;
+            vertical-align: top;
+            width: 0;
+            height: 0;
+            margin: -1px 27px 0 0;
+            border-style: solid;
+            border-width: 5px 4.8px 0 2.2px;
+            border-color: #CB4949 transparent transparent transparent;
+        }
     }
     // 画像+続柄
     &-person {
-        // width: 72px;
-        // height: 96px;
         width: 90%;
-        margin: -15px auto 0;
+        aspect-ratio: 1/1.3;
+        margin: -36px auto 0;
+        padding: 0 5px;
         background-color: #fff;
         border: 2px solid transparent;
     }
@@ -98,7 +101,7 @@
         height: 18px;
         line-height: 18px;
         text-align: left;
-        margin: -2px 0 0 -2px;
+        margin: -2px 0 0 -7px;
         &-tag {
             display: inline-block;
             vertical-align: top;
